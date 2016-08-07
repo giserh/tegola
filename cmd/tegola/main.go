@@ -83,11 +83,11 @@ func main() {
 //	initMaps registers maps with our server
 func initMaps(maps []Map, providers map[string]mvt.Provider) error {
 
-	//	range over our maps
+	//	iterate our maps
 	for _, m := range maps {
 		var layers []server.Layer
-		//	iterate layers
-		for _, l := range m.Layers {
+		//	iterate our layers
+		for idx, l := range m.Layers {
 			//	split our provider name (provider.layer) into [provider,layer]
 			providerLayer := strings.Split(l.ProviderLayer, ".")
 
@@ -99,7 +99,7 @@ func initMaps(maps []Map, providers map[string]mvt.Provider) error {
 			//	lookup our proivder
 			provider, ok := providers[providerLayer[0]]
 			if !ok {
-				return fmt.Errorf("provider not defined: %v", providerLayer[0])
+				return fmt.Errorf("provider (%v) not defined", providerLayer[0])
 			}
 
 			//	read the provider's layer names
@@ -132,6 +132,7 @@ func initMaps(maps []Map, providers map[string]mvt.Provider) error {
 				MaxZoom:     l.MaxZoom,
 				Provider:    provider,
 				DefaultTags: defaultTags,
+				OrderIndex:  idx,
 			})
 		}
 
