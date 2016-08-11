@@ -508,14 +508,14 @@ func keyvalTagsMap(keyMap []string, valueMap []interface{}, f *Feature) (tags []
 		}
 
 		if kidx == -1 {
-			log.Println("We go an error")
-			return tags, fmt.Errorf("Did not find key: %v in keymap.", key)
+			log.Printf("Did not find key (%v) in keymap.", key)
+			return tags, fmt.Errorf("Did not find key (%v) in keymap.", key)
 		}
 
 		for i, v := range valueMap {
 			switch tv := val.(type) {
 			default:
-				return tags, fmt.Errorf("Value(%[1]v) type of %[1]t is not supported.", tv)
+				return tags, fmt.Errorf("Value (%[1]v) of type (%[1]T) is not supported.", tv)
 
 			case string:
 				vmt, ok := v.(string) // Make sure the type of the Value map matches the type of the Tag's value

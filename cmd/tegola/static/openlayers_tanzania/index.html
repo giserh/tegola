@@ -27,16 +27,15 @@
 								format: new ol.format.MVT(),
 								tileGrid: ol.tilegrid.createXYZ({maxZoom: 22}),
 								tilePixelRatio: 16,
-								url: '/maps/zoning/{z}/{x}/{y}.vector.pbf'
-//								url: '/maps/basic-example/{z}/{x}/{y}.vector.pbf'
+								url: '/maps/tanzania_osm/{z}/{x}/{y}.vector.pbf?debug=true'
 							}),
 							style: createMapboxStreetsV6Style()
 						})
 					],
 					target: 'map',
 					view: new ol.View({
-						center: [0, 0],
-						zoom: 2
+						center: [4364508, -767012],
+						zoom: 14
 					})
 				});
 
